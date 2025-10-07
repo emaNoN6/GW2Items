@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - gw2@emanon.us" uuid="ff46d7e5-17eb-410c-ab7c-87833ad12451">
+    <database-info product="MySQL" version="5.6.16-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="gw2"/>
+    <table name="armor" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="ENUM" precision="11" scale="0" nullable="false" jdbcType="1"/>
+      <column name="weight_class" sqlType="ENUM" precision="9" scale="0" nullable="false" jdbcType="1"/>
+      <column name="defense" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5" def="MA=="/>
+      <column name="suffix_item_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_armor_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="armorTypes" schema="" catalog="gw2" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="type" sqlType="ENUM" precision="11" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="attributes" schema="" catalog="gw2" type="TABLE">
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="attribute" sqlType="CHAR" precision="50" scale="0" nullable="false" jdbcType="1"/>
+      <column name="modifier" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <primary-key name="PRIMARY" columns="idx,item_id"/>
+      <foreign-key name="FK_attributes_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="Index 3" unique="true" columns="item_id,attribute"/>
+    </table>
+    <table name="back" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="suffix_item_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_back_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="bag" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="no_sell_or_sort" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="size" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_bag_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="buff" schema="" catalog="gw2" type="TABLE">
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="skill_id" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="CHAR" precision="255" scale="0" nullable="true" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="idx"/>
+      <foreign-key name="FK_buff_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="Index 2" unique="true" columns="item_id,description"/>
+    </table>
+    <table name="cloth" schema="" catalog="gw2" type="TABLE">
+      <column name="colorId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="brightness" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="contrast" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="hue" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="saturation" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="lightness" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="rgb" sqlType="TINYTEXT" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="colorId"/>
+    </table>
+    <table name="color" schema="" catalog="gw2" type="TABLE">
+      <column name="colorId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="added" sqlType="CHAR" precision="11" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="colorId"/>
+      <index name="colorId_UNIQUE" unique="true" columns="colorId"/>
+      <index name="name_UNIQUE" unique="true" columns="name"/>
+      <index name="name_FULLTEXT" unique="false" columns="name"/>
+    </table>
+    <table name="consumable" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="ENUM" precision="17" scale="0" nullable="false" jdbcType="1"/>
+      <column name="duration_ms" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="description" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_consumable_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="container" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="ENUM" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_container_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="craftingDisciplines" schema="" catalog="gw2" type="TABLE">
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="discipline" sqlType="ENUM" precision="13" scale="0" nullable="true" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="idx"/>
+    </table>
+    <table name="event_names" schema="" catalog="gw2" type="TABLE">
+      <column name="id" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="added" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="id_UNIQUE" unique="true" columns="id"/>
+      <index name="event" unique="false" columns="name"/>
+    </table>
+    <table name="events" schema="" catalog="gw2" type="TABLE">
+      <column name="idx" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="world_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="map_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="event_id" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="state" sqlType="ENUM" precision="11" scale="0" nullable="true" jdbcType="1"/>
+      <column name="update" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="idx,world_id"/>
+      <index name="idx_UNIQUE" unique="true" columns="world_id,map_id,event_id"/>
+      <index name="idx" unique="false" columns="world_id,map_id,event_id"/>
+    </table>
+    <table name="gathering" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="ENUM" precision="9" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_gathering_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="gizmo" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="ENUM" precision="19" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_gizmo_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="infusion_slots" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="flags" sqlType="TINYTEXT" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="item" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_infusion_slots_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="itemFlags" schema="" catalog="gw2" type="TABLE">
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="flag" sqlType="ENUM" precision="20" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="idx"/>
+      <foreign-key name="FK_itemFlags_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="itemGameTypes" schema="" catalog="gw2" type="TABLE">
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="gameType" sqlType="ENUM" precision="9" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="idx"/>
+      <foreign-key name="FK_itemGameTypes_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="itemNames" schema="" catalog="gw2" type="TABLE">
+      <column name="itemId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="itemName" sqlType="TINYTEXT" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="itemId"/>
+      <index name="itemName" unique="false" columns="itemName"/>
+    </table>
+    <table name="itemType" schema="" catalog="gw2" type="TABLE">
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="type" sqlType="ENUM" precision="16" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="idx"/>
+    </table>
+    <table name="item_detail" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="description" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="type" sqlType="ENUM" precision="16" scale="0" nullable="false" jdbcType="1"/>
+      <column name="level" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="rarity" sqlType="ENUM" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="vendor_value" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="icon_file_id" sqlType="TINYTEXT" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="icon_file_signature" sqlType="TINYTEXT" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="game_types" sqlType="TINYTEXT" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="flags" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="restrictions" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="added" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="updated" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="preview" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_item_detail_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="item_view" schema="" catalog="gw2" type="VIEW">
+      <column name="Name" sqlType="TINYTEXT" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="description" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="type" sqlType="ENUM" precision="16" scale="0" nullable="false" jdbcType="1"/>
+      <column name="level" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="rarity" sqlType="ENUM" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="vendor_value" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="iconURL" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="game_types" sqlType="TINYTEXT" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="flags" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="restrictions" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="added" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="updated" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="preview" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="items" schema="" catalog="gw2" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="added" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="updated" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="preview" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="hasRecipe" sqlType="ENUM" precision="2" scale="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="isIngredient" sqlType="ENUM" precision="2" scale="0" nullable="false" jdbcType="1" def="J04n"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_armor_items" table="armor" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_attributes_items" table="attributes" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_back_items" table="back" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_bag_items" table="bag" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_buff_items" table="buff" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_consumable_items" table="consumable" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_container_items" table="container" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_gathering_items" table="gathering" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_gizmo_items" table="gizmo" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_infusion_slots_items" table="infusion_slots" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_itemFlags_items" table="itemFlags" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_itemGameTypes_items" table="itemGameTypes" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_item_detail_items" table="item_detail" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_recipe_detail_items" table="recipe_detail" schema="" catalog="gw2" columns="output_item_id"/>
+      <exported-key name="FK_recipe_ingredients_items" table="recipe_ingredients" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_tool_items" table="tool" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_trinket_items" table="trinket" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_upgrade_component_items" table="upgrade_component" schema="" catalog="gw2" columns="item_id"/>
+      <exported-key name="FK_weapon_items" table="weapon" schema="" catalog="gw2" columns="item_id"/>
+      <index name="item_id" unique="true" columns="item_id"/>
+    </table>
+    <table name="last_update" schema="" catalog="gw2" type="TABLE">
+      <column name="last_update" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="last_update"/>
+    </table>
+    <table name="leather" schema="" catalog="gw2" type="TABLE">
+      <column name="colorId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="brightness" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="contrast" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="hue" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="saturation" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="lightness" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="rgb" sqlType="TINYTEXT" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="colorId"/>
+    </table>
+    <table name="map_names" schema="" catalog="gw2" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="ADDED" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="mapIDX" unique="false" columns="name"/>
+    </table>
+    <table name="metal" schema="" catalog="gw2" type="TABLE">
+      <column name="colorId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="brightness" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="contrast" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="hue" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="saturation" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="lightness" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="rgb" sqlType="TINYTEXT" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="colorId"/>
+    </table>
+    <table name="rarity" schema="" catalog="gw2" type="TABLE">
+      <column name="rarity" sqlType="ENUM" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <primary-key name="PRIMARY" columns="idx"/>
+    </table>
+    <table name="recipeDisciplines" schema="" catalog="gw2" type="TABLE">
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="recipeId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="discipline" sqlType="ENUM" precision="13" scale="0" nullable="true" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="idx"/>
+      <foreign-key name="FK_recipeDisciplines_recipes" columns="recipeId" ref-table="recipes" ref-schema="" ref-catalog="gw2" ref-columns="recipe_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="recipe_detail" schema="" catalog="gw2" type="TABLE">
+      <column name="recipe_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="output_item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="output_item_count" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5" def="MQ=="/>
+      <column name="min_rating" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5" def="MA=="/>
+      <column name="time_to_craft_ms" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MTAwMA=="/>
+      <column name="disciplines" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="flags" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="added" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="updated" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="recipe_id"/>
+      <foreign-key name="FK_recipe_detail_items" columns="output_item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_recipe_detail_recipes" columns="recipe_id" ref-table="recipes" ref-schema="" ref-catalog="gw2" ref-columns="recipe_id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="recipe_id_UNIQUE" unique="true" columns="recipe_id"/>
+      <index name="FK_recipe_detail_items" unique="false" columns="output_item_id"/>
+    </table>
+    <table name="recipe_ingredients" schema="" catalog="gw2" type="TABLE">
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="recipe_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="count" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <primary-key name="PRIMARY" columns="idx"/>
+      <foreign-key name="FK_recipe_ingredients_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_recipe_ingredients_recipes" columns="recipe_id" ref-table="recipes" ref-schema="" ref-catalog="gw2" ref-columns="recipe_id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="FK_recipe_ingredients_items" unique="false" columns="item_id"/>
+      <index name="recipeIDX_idx" unique="false" columns="recipe_id"/>
+    </table>
+    <table name="recipes" schema="" catalog="gw2" type="TABLE">
+      <column name="recipe_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="updated" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="added" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="recipe_id"/>
+      <exported-key name="FK_recipeDisciplines_recipes" table="recipeDisciplines" schema="" catalog="gw2" columns="recipeId"/>
+      <exported-key name="FK_recipe_detail_recipes" table="recipe_detail" schema="" catalog="gw2" columns="recipe_id"/>
+      <exported-key name="FK_recipe_ingredients_recipes" table="recipe_ingredients" schema="" catalog="gw2" columns="recipe_id"/>
+    </table>
+    <table name="tool" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="ENUM" precision="8" scale="0" nullable="false" jdbcType="1"/>
+      <column name="uses" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_tool_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="trinket" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="ENUM" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="suffix_item_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_trinket_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="upgrade_component" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="ENUM" precision="8" scale="0" nullable="true" jdbcType="1"/>
+      <column name="flags" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="infusion_upgrade_flags" sqlType="TINYTEXT" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="suffix" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_upgrade_component_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="weapon" schema="" catalog="gw2" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="ENUM" precision="12" scale="0" nullable="false" jdbcType="1" def="J1VOS05PV04n"/>
+      <column name="damage_type" sqlType="ENUM" precision="9" scale="0" nullable="false" jdbcType="1"/>
+      <column name="min_power" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
+      <column name="max_power" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
+      <column name="defense" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
+      <column name="suffix_item_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="FK_weapon_items" columns="item_id" ref-table="items" ref-schema="" ref-catalog="gw2" ref-columns="item_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="weaponTypes" schema="" catalog="gw2" type="TABLE">
+      <column name="idx" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="type" sqlType="ENUM" precision="12" scale="0" nullable="false" jdbcType="1" def="J1VOS05PV04n"/>
+      <primary-key name="PRIMARY" columns="idx"/>
+    </table>
+    <table name="weightClass" schema="" catalog="gw2" type="TABLE">
+      <column name="weight_class" sqlType="ENUM" precision="9" scale="0" nullable="false" jdbcType="1"/>
+    </table>
+    <table name="world_names" schema="" catalog="gw2" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="added" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="id_UNIQUE" unique="true" columns="id"/>
+      <index name="nameIDX" unique="false" columns="name"/>
+    </table>
+    <procedure name="fullRecipe" schema="" catalog="gw2" type="1"/>
+    <procedure name="getIngredient" schema="" catalog="gw2" type="1"/>
+    <procedure name="getIngredients" schema="" catalog="gw2" type="1"/>
+    <procedure name="splitDisciplines" schema="" catalog="gw2" type="1"/>
+  </data-source>
+</component>

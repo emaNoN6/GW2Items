@@ -1,0 +1,3 @@
+org.gw2items.ProgressBarDemo
+org.gw2items.ProgressBarFrame
+org.gw2items.ProgressBarFrame$SimulatedActivity

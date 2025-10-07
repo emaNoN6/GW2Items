@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - gw2@emanon.us" uuid="ff46d7e5-17eb-410c-ab7c-87833ad12451">
+      <secret-storage>master_key</secret-storage>
+      <user-name>gw2</user-name>
+      <schema-pattern>gw2.*</schema-pattern>
+      <default-schemas>gw2.*</default-schemas>
+    </data-source>
+  </component>
+</project>

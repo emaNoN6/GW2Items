@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_gw2items" default="compile.module.gw2items">
+  <dirname property="module.gw2items.basedir" file="${ant.file.module_gw2items}"/>
+  
+  <property name="module.jdk.home.gw2items" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.gw2items" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.gw2items" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.gw2items" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="gw2items.output.dir" value="${module.gw2items.basedir}/../../../../../../production/GW2Items"/>
+  <property name="gw2items.testoutput.dir" value="${module.gw2items.basedir}/../../../../../../test/GW2Items"/>
+  
+  <path id="gw2items.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="gw2items.module.production.classpath">
+    <path refid="${module.jdk.classpath.gw2items}"/>
+    <path refid="library.json-simple-1.1.1.classpath"/>
+    <path refid="library.c3p0-0.9.5-pre6.classpath"/>
+    <path refid="library.httpclient-4.3.1.classpath"/>
+    <path refid="library.commons-codec-1.6.classpath"/>
+    <path refid="library.junit_4.classpath"/>
+  </path>
+  
+  <path id="gw2items.runtime.production.module.classpath">
+    <pathelement location="${gw2items.output.dir}"/>
+    <path refid="library.json-simple-1.1.1.classpath"/>
+    <path refid="library.c3p0-0.9.5-pre6.classpath"/>
+    <path refid="library.httpclient-4.3.1.classpath"/>
+    <path refid="library.commons-codec-1.6.classpath"/>
+    <path refid="library.junit_4.classpath"/>
+  </path>
+  
+  <path id="gw2items.module.classpath">
+    <path refid="${module.jdk.classpath.gw2items}"/>
+    <pathelement location="${gw2items.output.dir}"/>
+    <path refid="library.json-simple-1.1.1.classpath"/>
+    <path refid="library.c3p0-0.9.5-pre6.classpath"/>
+    <path refid="library.httpclient-4.3.1.classpath"/>
+    <path refid="library.commons-codec-1.6.classpath"/>
+    <path refid="library.junit_4.classpath"/>
+  </path>
+  
+  <path id="gw2items.runtime.module.classpath">
+    <pathelement location="${gw2items.testoutput.dir}"/>
+    <pathelement location="${gw2items.output.dir}"/>
+    <path refid="library.json-simple-1.1.1.classpath"/>
+    <path refid="library.c3p0-0.9.5-pre6.classpath"/>
+    <path refid="library.httpclient-4.3.1.classpath"/>
+    <path refid="library.commons-codec-1.6.classpath"/>
+    <path refid="library.junit_4.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.gw2items">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.gw2items">
+    <patternset refid="excluded.from.module.gw2items"/>
+  </patternset>
+  
+  <path id="gw2items.module.sourcepath">
+    <dirset dir="${module.gw2items.basedir}/../../GW2Items">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="gw2items.module.test.sourcepath">
+    <dirset dir="${module.gw2items.basedir}/../../GW2Items">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.gw2items" depends="compile.module.gw2items.production,compile.module.gw2items.tests" description="Compile module GW2Items"/>
+  
+  <target name="compile.module.gw2items.production" depends="register.custom.compilers" description="Compile module GW2Items; production classes">
+    <mkdir dir="${gw2items.output.dir}"/>
+    <javac2 destdir="${gw2items.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gw2items}/javac">
+      <compilerarg line="${compiler.args.gw2items}"/>
+      <bootclasspath refid="gw2items.module.bootclasspath"/>
+      <classpath refid="gw2items.module.production.classpath"/>
+      <src refid="gw2items.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gw2items"/>
+    </javac2>
+    
+    <copy todir="${gw2items.output.dir}">
+      <fileset dir="${module.gw2items.basedir}/../src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.gw2items.tests" depends="register.custom.compilers,compile.module.gw2items.production" description="compile module GW2Items; test classes" unless="skip.tests">
+    <mkdir dir="${gw2items.testoutput.dir}"/>
+    <javac2 destdir="${gw2items.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gw2items}/javac">
+      <compilerarg line="${compiler.args.gw2items}"/>
+      <bootclasspath refid="gw2items.module.bootclasspath"/>
+      <classpath refid="gw2items.module.classpath"/>
+      <src refid="gw2items.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gw2items"/>
+    </javac2>
+    
+    <copy todir="${gw2items.testoutput.dir}">
+      <fileset dir="${module.gw2items.basedir}/../test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.gw2items" description="cleanup module">
+    <delete dir="${gw2items.output.dir}"/>
+    <delete dir="${gw2items.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="com.mchange:c3p0:0.9.5.1" type="repository">
+    <properties maven-id="com.mchange:c3p0:0.9.5.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/c3p0-0.9.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mchange-commons-java-0.2.10.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/c3p0-0.9.5.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/c3p0-0.9.5.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
