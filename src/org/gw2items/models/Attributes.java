@@ -32,7 +32,7 @@ public class Attributes {
 	 */
 	public Attributes(JSONObject o) {
 		this.attribute = o.get("attribute").toString();
-		this.modifier = Integer.parseInt(o.get("modifier").toString());
+		this.modifier = Integer.valueOf(o.get("modifier").toString());
 	}
 
 	/**

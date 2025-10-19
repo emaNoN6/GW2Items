@@ -117,14 +117,12 @@ public class Database {
 		Start.setStatusLabel(MessageFormat.format("Deleting {0} removed {1}.", itemIds.removedCount(), which));
 		// Foreign key constraints will take care of the rest.
 		try (PreparedStatement stmt = con.prepareStatement(query)) {
-			Iterator<Integer> it = itemIds.getRemoved().iterator();
-			while (it.hasNext()) {
-				Integer itemId = it.next();
-				stmt.setInt(1, itemId);
-				stmt.executeUpdate();
-				removedCount++;
-				Start.setOutput(MessageFormat.format("Removed {0} id {1}.\n", ("items".equals(which)) ? "item" : "recipe", itemId));
-			}
+                    for (Integer itemId : itemIds.getRemoved()) {
+                        stmt.setInt(1, itemId);
+                        stmt.executeUpdate();
+                        removedCount++;
+                        Start.setOutput(MessageFormat.format("Removed {0} id {1}.\n", ("items".equals(which)) ? "item" : "recipe", itemId));
+                    }
 		} catch (SQLException ex) {
 			JOptionPane.showMessageDialog(null, "removeDeleted: " + ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -526,7 +524,7 @@ public class Database {
 				stmt1 = con.prepareStatement("INSERT INTO recipe_ingredients (recipe_id, item_id, count) VALUES (?,?,?)");
 				stmt1.setString(1, recipe.getRecipe_id());
 				stmt1.setString(2, l.get(i).getItem_id());
-				stmt1.setString(3, l.get(i).getCount().toString());
+				stmt1.setString(3, l.get(i).getCount());
 				stmt1.executeUpdate();
 			}
 			stmt = con.prepareStatement("DELETE FROM recipeDisciplines WHERE recipeId=?");

@@ -26,7 +26,7 @@ public class Back {
 	public Back(Object obj) {
 		JSONObject o = (JSONObject) obj;
 		final String suffix = o.get("suffix_item_id").toString();
-		this.suffix_item_id = suffix.isEmpty()?0:Integer.parseInt(suffix);
+		this.suffix_item_id = suffix.isEmpty()?0:Integer.valueOf(suffix);
 		this.infusion_slots = new InfusionSlot((JSONArray) (o.get("infusion_slots")));
 		this.infix_upgrade = new InfixUpgrade((JSONObject) o.get("infix_upgrade"));
 	}

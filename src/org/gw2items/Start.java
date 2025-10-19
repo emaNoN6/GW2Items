@@ -163,7 +163,7 @@ public class Start extends JPanel {
 			// Read items
 			if (arr != null) {
 				for (int i = 0; i < arr.size(); i++) {
-					workingArray.add(Integer.parseInt(arr.get(i).toString()));
+					workingArray.add(Integer.valueOf(arr.get(i).toString()));
 				}
 				setOutput(MessageFormat.format("Read {0} total {1} ids.\n", workingArray.size(), getItems ? "item" : "recipe"));
 			}

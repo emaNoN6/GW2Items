@@ -45,7 +45,7 @@ public class Writer implements Runnable {
                             processType(obj);
                         } else {
                             Recipe recipe = new Recipe(obj);
-                            writeSqlRecipes(recipe, false);
+                            writeSqlRecipes(recipe);
                         }
                     }
             } catch (Exception e1) {

@@ -17,11 +17,11 @@ public class Weapon {
 
 	private String type = null;
 	private String damage_type = null;
-	private int min_power;
-	private int max_power;
-	private int defense;
-	private InfusionSlot infusion_slots;
-	private InfixUpgrade infix_upgrade;
+	private final int min_power;
+	private final int max_power;
+	private final int defense;
+	private final InfusionSlot infusion_slots;
+	private final InfixUpgrade infix_upgrade;
 	private Integer suffix_item_id = null;
 
 	/**
@@ -36,7 +36,7 @@ public class Weapon {
 		this.min_power = Integer.parseInt(obj.get("min_power").toString());
 		this.max_power = Integer.parseInt(obj.get("max_power").toString());
 		this.defense = Integer.parseInt(obj.get("defense").toString());
-		this.suffix_item_id = suffix.isEmpty()?0:Integer.parseInt(suffix);
+		this.suffix_item_id = suffix.isEmpty()?0:Integer.valueOf(suffix);
 		this.infusion_slots = new InfusionSlot((JSONArray) obj.get("infusion_slots"));
 		this.infix_upgrade = new InfixUpgrade((JSONObject) obj.get("infix_upgrade"));
 	}

@@ -83,7 +83,7 @@ public class InfusionSlot {
 		if (l == 0) {
 			this.flags = "none";
 		} else {
-			this.flags = sb.substring(0, l - 1).toString();
+			this.flags = sb.substring(0, l - 1);
 		}
 	}
 

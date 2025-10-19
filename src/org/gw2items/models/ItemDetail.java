@@ -43,7 +43,7 @@ public class ItemDetail {
 	 * @param obj
 	 */
 	public ItemDetail(JSONObject obj) {
-		this.itemId = Integer.parseInt(obj.get("item_id").toString());
+		this.itemId = Integer.valueOf(obj.get("item_id").toString());
 		this.name = (String) obj.get("name");
 		this.description = ((String)obj.get("description")).replaceAll("<[^>]*>", "");
 		this.type = (String) obj.get("type");

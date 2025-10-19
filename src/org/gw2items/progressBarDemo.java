@@ -25,14 +25,11 @@ public class progressBarDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				JFrame frame = new ProgressBarFrame();
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setVisible(true);
-			}
-		});
+		EventQueue.invokeLater(() -> {
+                    JFrame frame = new ProgressBarFrame();
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.setVisible(true);
+                });
 	}
 }
 
@@ -60,26 +57,20 @@ class ProgressBarFrame extends JFrame {
 		panel.add(progressBar);
 
 		checkBox = new JCheckBox("indeterminate");
-		checkBox.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				progressBar.setIndeterminate(checkBox.isSelected());
-				progressBar.setStringPainted(!progressBar.isIndeterminate());
-			}
-		});
+		checkBox.addActionListener((ActionEvent event) -> {
+                    progressBar.setIndeterminate(checkBox.isSelected());
+                    progressBar.setStringPainted(!progressBar.isIndeterminate());
+                });
 		panel.add(checkBox);
 		add(new JScrollPane(textArea), BorderLayout.CENTER);
 		add(panel, BorderLayout.SOUTH);
 
        // set up the button action
-		startButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(final ActionEvent event) {
-				startButton.setEnabled(false);
-				activity = new SimulatedActivity(MAX);
-				activity.execute();
-			}
-		});
+		startButton.addActionListener((final ActionEvent event) -> {
+                    startButton.setEnabled(false);
+                    activity = new SimulatedActivity(MAX);
+                    activity.execute();
+                });
 	}
 
 	final transient private JButton startButton;
@@ -132,6 +123,6 @@ class ProgressBarFrame extends JFrame {
 		}
 
 		private int current;
-		private int target;
+		private final int target;
 	}
 }

@@ -31,16 +31,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.swing.JOptionPane;
 
-/*
-* This code is public domain: you are free to use, link and/or modify it in any way you want,
-* for all purposes including commercial applications.
- */
-
-/**
- *
- * @author Michael
- */
-
 public class WebClientDevWrapper {
 
 	/**

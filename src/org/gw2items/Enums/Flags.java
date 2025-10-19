@@ -59,7 +59,7 @@ public enum Flags {
 	 *
 	 */
 	Unique("Unique");
-	private String pretty;
+	private final String pretty;
 	private Flags(String str) {
 		this.pretty = str;
 	}

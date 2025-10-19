@@ -15,12 +15,12 @@ import org.json.simple.JSONObject;
  */
 public class Armor {
 
-	private String type;
-	private String weight_class;
-	private int defense;
-	private InfusionSlot infusion_slots;
-	private InfixUpgrade infix_upgrade;
-	private Integer suffix_item_id;
+	final private String type;
+	final private String weight_class;
+	final private int defense;
+	final private InfusionSlot infusion_slots;
+	final private InfixUpgrade infix_upgrade;
+	final private Integer suffix_item_id;
 
 	/**
 	 *
@@ -37,7 +37,7 @@ public class Armor {
 		this.defense = defense;
 		this.infusion_slots = infusion_slots;
 		this.infix_upgrade = infix_upgrade;
-		this.suffix_item_id = suffix_item_id.isEmpty()?0:Integer.parseInt(suffix_item_id);
+		this.suffix_item_id = suffix_item_id.isEmpty()?0:Integer.valueOf(suffix_item_id);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Armor {
 		this.type = o.get("type").toString();
 		this.weight_class = o.get("weight_class").toString();
 		this.defense = Integer.parseInt(o.get("defense").toString());
-		this.suffix_item_id = suffix.isEmpty()?0:Integer.parseInt(suffix);
+		this.suffix_item_id = suffix.isEmpty()?0:Integer.valueOf(suffix);
 		this.infusion_slots = new InfusionSlot((JSONArray)(o.get("infusion_slots")));
 		this.infix_upgrade = new InfixUpgrade((JSONObject) o.get("infix_upgrade"));
 	}

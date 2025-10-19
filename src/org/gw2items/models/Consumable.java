@@ -5,7 +5,6 @@
 package org.gw2items.models;
 
 import java.text.MessageFormat;
-import java.util.concurrent.TimeUnit;
 import org.json.simple.JSONObject;
 
 /**
