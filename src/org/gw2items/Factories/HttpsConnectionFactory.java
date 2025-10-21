@@ -7,6 +7,7 @@ package org.gw2items.Factories;
 
 //~--- non-JDK imports --------------------------------------------------------
 
+//TODO upgrade all the old org.apache.http to java.net.http
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
